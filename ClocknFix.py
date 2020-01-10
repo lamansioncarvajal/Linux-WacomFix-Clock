@@ -90,21 +90,29 @@ def getdatime():
 	dateobj = date.today()
 	lbldate.config(text= nomdia[dateobj.weekday()] + str(dateobj.day) + "\n" + nommes[dateobj.month] + str(dateobj.year))
 	lbldate.after(60000,getdatime)
+def big():
+    toggleSize(False)
+def small():
+    toggleSize(True)
 def toggleSize(size):
     if(size):
-        clock.config(font=("gothic",40, "bold"))
-        lbldate.config(font="gothic",18, "bold")
+        clock.config(font=("gothic",40))
+        lbldate.config(font=("gothic",18))
+        print("smallaf")
     else:
-        clock.config(font=("gothic",77, "bold"))
-        lbldate.config(font="gothic",24, "bold")
+        clock.config(font=("gothic",77))
+        lbldate.config(font=("gothic", 24))
+        print("bigaf")
+    clock.pack()
+    lbldate.pack()
 clock = Label(tab1, font = ("gothic",77, "bold"), bg="#282c34", fg="#abb2bf" )
 clock.pack()
 lbldate = Label(tab1, font = ("gothic",24, "bold"), bg="#282c34", fg="#abb2bf" )
 lbldate.pack()
 slider.pack(pady=10)
 button.pack(pady=1)
-sndbutton = Button(tab1, text="Small", toggleSize(True), bg="#282c34", fg="#abb2bf", font = ("gothic"))
-trdbutton = Button(tab1, text="Big", toggleSize(False), bg="#282c34", fg="#abb2bf", font = ("gothic"))
+sndbutton = Button(tab1, text="Small", command=small, bg="#282c34", fg="#abb2bf", font = ("gothic"))
+trdbutton = Button(tab1, text="Big", command=big, bg="#282c34", fg="#abb2bf", font = ("gothic"))
 
 tick()
 getdatime()
@@ -112,7 +120,257 @@ getdatime()
 button.pack()
 sndbutton.pack()
 trdbutton.pack()
-parent_tab.add(tab1, text="temato")
-parent_tab.add(tab2, text="temato2vece")
+parent_tab.add(tab1, text="Clock")
+parent_tab.add(tab2, text="TabletSensibility")
 parent_tab.pack(expand=1, fill='both')
 root.mainloop()
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@lamansioncarvajal
+Learn Git and GitHub without any code!
+
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+lamansioncarvajal /
+Linux-WacomFix-Clock
+
+1
+0
+
+    0
+
+Code
+Issues 0
+Pull requests 0
+Actions
+Projects 0
+Wiki
+Security
+Insights
+Settings
+Linux-WacomFix-Clock/
+
+1
+
+from tkinter import *
+
+2
+
+from tkinter import *
+
+3
+
+from tkinter import ttk
+
+4
+
+import subprocess
+
+5
+
+import sys
+
+6
+
+from datetime import date
+
+7
+
+import time
+
+8
+
+root = Tk()
+
+9
+
+root.title('Clock&Fix')
+
+10
+
+root.wait_visibility(root)
+
+11
+
+root.attributes("-alpha", 0.66)
+
+12
+
+root.geometry('460x290')
+
+13
+
+root.configure(background="#282c34")
+
+14
+
+​
+
+15
+
+foreground="#abb2bf"
+
+16
+
+background="#282c34"
+
+17
+
+style = ttk.Style()
+
+18
+
+​
+
+19
+
+style.theme_create( "yummy", parent="alt", settings={
+
+20
+
+        "TNotebook": {"configure": {"tabmargins": [0, 0, 0, 0],
+
+21
+
+                    "background" : background,
+
+22
+
+                    "foreground" : foreground },
+
+23
+
+        },
+
+24
+
+        "TFrame": {"configure": {"tabmargins": [0, 0, 0, 0],"background" : background,},
+
+25
+
+        },
+
+26
+
+        "TNotebook.Tab": {
+
+27
+
+            "configure": {"padding": [5, 1],"foreground": foreground, "background": background },
+
+28
+
+            "map":       {"background": [("selected", background)],
+
+29
+
+                          "expand": [("selected", foreground)] } } } )
+
+30
+
+​
+
+31
+
+style.theme_use("yummy")
+
+32
+
+parent_tab = ttk.Notebook(root)
+
+33
+
+tab1 = ttk.Frame(parent_tab)
+
+34
+
+tab2 = ttk.Frame(parent_tab)
+
+35
+
+​
+
+36
+
+nomdia = {
+
+37
+
+0: "Lunes ",
+
+38
+
+1: "Martes ",
+
+39
+
+2: "Miércoles ",
+
+40
+
+3: "Jueves ",
+
+41
+
+4: "Viernes ",
+
+42
+
+5: "Sábado ",
+
+43
+
+6: "Domingo "}
+
+44
+
+nommes = {
+
+45
+
+1: "Enero ",
+
+46
+
+2: "Febrero ",
+
+47
+
+3: "Marzo ",
+
+48
+
+4: "Abril ",
+
+49
+
+5: "Mayo ",
+
+50
+
+6: "Junio ",
+
+@lamansioncarvajal
+Commit changes
+Commit summary
+Optional extended description
+Commit directly to the master branch.
+Create a new branch for this commit and start a pull request. Learn more about pull requests.
+
+    © 2020 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Help
+
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
+
